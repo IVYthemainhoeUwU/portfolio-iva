@@ -1,0 +1,185 @@
+---
+const steps = [
+  {
+    name: "How I show up in a team",
+    brief: [
+      "Marketing rarely happens in isolation. Most of the work happens in conversations — often unstructured, sometimes unclear.",
+      "I tend to <strong>bring structure into vague discussions</strong>. Not by forcing answers too quickly, but by asking the questions that make things clearer: what are we actually trying to solve, what doesn’t make sense yet, where are we making assumptions?",
+      "I <strong>challenge ideas without shutting them down</strong>. Because strong work usually comes from refining something — not replacing it entirely.",
+      "At the same time, I try to create an environment where <strong>ideas can be explored without pressure</strong>. Where thoughts don’t have to be fully formed to be useful.",
+      "And in many cases, I naturally take the role of <strong>shaping the narrative</strong> — connecting inputs, structuring arguments, and turning scattered ideas into something coherent."
+    ]
+  },
+  {
+    name: "From messy ideas to a clear story",
+    brief: [
+      "Most ideas don’t start as clear arguments.",
+      "They start fragmented — half-formed thoughts, different opinions, loose directions that don’t fully connect yet.",
+      "A big part of my role is to <strong>find the thread that runs through all of it</strong>. Not by forcing a narrative too early, but by <strong>questioning what actually holds up</strong> and what doesn’t.",
+      "I look for where things feel off — where arguments contradict each other, where something sounds right but doesn’t fully make sense yet. Because clarity usually doesn’t come from adding more. It comes from <strong>removing what doesn’t belong</strong>.",
+      "From there, I structure ideas in a way that works on two levels: <strong>logically</strong> — so it can be followed, and <strong>emotionally</strong> — so it actually resonates.",
+      "Presentations are not just about making things look good. They are about making something <strong>clear enough that people can move forward with it</strong>."
+    ]
+  },
+  {
+    name: "Behind the final slide",
+    brief: [
+      "The final output often looks clean and obvious. But getting there is rarely linear.",
+      "It involves <strong>structuring discussions</strong> that don’t yet have a clear direction.<br/><strong>Building a storyline</strong> that holds together from beginning to end.<br/><strong>Sharpening arguments</strong> until they feel precise, not just plausible.<br/>And finding the right <strong>tone</strong> — so that something is not only correct, but actually resonates.",
+      "A big part of the work is making complexity <strong>feel simple without oversimplifying it</strong>.",
+      "Because when something finally “clicks”, it usually doesn’t mean it became easier.",
+      "It means it became <strong>clear enough to move forward</strong>."
+    ]
+  }
+];
+---
+<section id="process" class="process-section editorial-section">
+  <div class="process-spread reveal">
+    <div class="editorial-list">
+      {steps.map((step, index) => (
+        <div class={`step-item reveal delay-${index + 1}`}>
+          <div class="step-number">0{index + 1}.</div>
+          <div class="step-content">
+            <h4 class="step-name">{step.name}</h4>
+            <div class="step-description">
+              {step.brief.map(paragraph => (
+                <p class="step-brief" set:html={paragraph} />
+              ))}
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <div class="process-header">
+      <div class="chapter-meta">me as a team member</div>
+      <h3 class="process-title">
+        <span class="thinking-text">what makes the</span>
+        <span class="work-text">difference</span>
+      </h3>
+    </div>
+  </div>
+</section>
+
+<style>
+  .process-spread {
+    padding: 100px 5vw;
+    display: grid;
+    grid-template-columns: 1.4fr 1fr; /* Matching Case Studies ratio */
+    gap: 100px;
+    align-items: flex-start;
+    max-width: 1600px;
+    margin: 0 auto;
+  }
+
+  .process-header {
+    position: sticky;
+    top: 150px;
+    text-align: right;
+    padding-right: 2vw; /* Matching Case Studies offset */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+
+  .chapter-meta {
+    font-size: 0.9rem;
+    text-transform: lowercase;
+    font-weight: 800;
+    letter-spacing: 0.4em;
+    color: var(--text-main);
+    font-family: var(--font-sans);
+    margin-bottom: 20px;
+    text-align: right;
+  }
+
+  .process-title {
+    font-family: var(--font-sans);
+    font-weight: 900;
+    font-size: clamp(3.5rem, 6.5vw, 7.5rem);
+    line-height: 0.9;
+    color: var(--text-main);
+    text-transform: lowercase;
+    letter-spacing: -0.06em;
+    margin: 0;
+  }
+
+  .thinking-text {
+    display: block;
+  }
+
+  .work-text {
+    display: block;
+    font-family: 'Amsterdam Four', cursive;
+    color: var(--accent-color);
+    font-weight: 100;
+    text-transform: none;
+    letter-spacing: 0;
+    margin-top: -0.45em; /* Increased overlap */
+    margin-left: 1.5rem; /* Pushed more to the right */
+    transform: rotate(-8.5deg);
+    -webkit-font-smoothing: antialiased;
+    opacity: 0.85;
+    line-height: 1;
+  }
+
+  .editorial-list {
+    display: flex;
+    flex-direction: column;
+    border-top: 2px solid var(--text-main);
+  }
+
+  .step-item {
+    display: flex;
+    gap: 60px;
+    padding: 60px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+  }
+
+  .step-item:last-child {
+    border-bottom: 2px solid var(--text-main);
+  }
+
+  .step-number {
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: -0.05em;
+    padding-top: 15px;
+  }
+
+  .step-content {
+    flex-grow: 1;
+  }
+
+  .step-name {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    text-transform: lowercase; /* Matches About and Approach titles */
+    letter-spacing: -0.03em;
+    line-height: 1;
+    margin-bottom: 20px;
+  }
+
+  .step-brief {
+    font-size: 1.1rem;
+    color: var(--text-main);
+    max-width: 500px;
+    line-height: 1.6;
+    margin-bottom: 1.2rem;
+    opacity: 0.8;
+  }
+
+  .step-brief:last-child {
+    margin-bottom: 0;
+  }
+
+  .delay-1 { transition-delay: 0.1s; }
+  .delay-2 { transition-delay: 0.2s; }
+  .delay-3 { transition-delay: 0.3s; }
+
+  @media (max-width: 968px) {
+    .process-spread { grid-template-columns: 1fr; gap: 60px; }
+    .process-header { position: static; }
+    .step-item { flex-direction: column; gap: 20px; padding: 40px 0; }
+    .step-number { padding-top: 0; }
+  }
+</style>

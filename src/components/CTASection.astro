@@ -1,0 +1,348 @@
+---
+---
+<section id="contact" class="section-container reveal">
+  <div class="cta-wrapper">
+    
+    <div class="cta-typography">
+      <h2 class="massive-text why-text">why</h2>
+      <h2 class="massive-text me-text">me?</h2>
+    </div>
+
+    <div class="tear-off-note reveal">
+      <!-- Thumbtack Pin -->
+      <div class="thumbtack"></div>
+
+      <div class="note-body">
+        <p class="note-message">
+          If you’re looking for someone<br/>
+          who just <span class="strike">executes</span> marketing,<br/>
+          I’m probably <i>not</i> the right fit.
+        </p>
+        <p class="note-message">
+          If you’re looking for someone<br/>
+          who <span class="underline">questions</span> it first —<br/>
+          we should <span class="underline-bold">talk.</span>
+        </p>
+      </div>
+      
+      <div class="strips-container">
+        {[...Array(8)].map((_, i) => (
+          i === 3 ? (
+            <div class="strip-gap">
+              <div class="fallen-strip">
+                <span class="strip-text">start a conversation</span>
+              </div>
+            </div>
+          ) : (
+            <button class="tear-strip" data-index={i}>
+              <span class="strip-text">start a conversation</span>
+            </button>
+          )
+        ))}
+      </div>
+    </div>
+
+    <!-- SVG Filters for Realism -->
+    <svg style="position: absolute; width: 0; height: 0;" aria-hidden="true">
+      <filter id="paper-edge">
+        <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="3" result="noise" />
+        <feDisplacementMap in="SourceGraphic" in2="noise" scale="5" xChannelSelector="R" yChannelSelector="G" />
+      </filter>
+    </svg>
+
+  </div>
+</section>
+
+<script>
+  const strips = document.querySelectorAll('.tear-strip');
+  
+  strips.forEach(strip => {
+    strip.addEventListener('click', (e) => {
+      const target = e.currentTarget;
+      
+      // Add tearing class
+      target.classList.add('tearing');
+      
+      // Open mailto link
+      const email = "lucic.iva@icloud.com";
+      const subject = encodeURIComponent("Potential fit – let’s talk");
+      const mailtoUrl = `mailto:${email}?subject=${subject}`;
+      
+      // Delay slightly to let animation start
+      setTimeout(() => {
+        window.location.href = mailtoUrl;
+      }, 300);
+    });
+  });
+</script>
+
+<style>
+  .cta-wrapper {
+    min-height: 120vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 220px 0 150px 0;
+    background: #ffffff;
+  }
+
+  .cta-typography {
+    text-align: center;
+    line-height: 0.65;
+    z-index: 1;
+    position: relative;
+    margin-bottom: 120px;
+  }
+
+  .massive-text {
+    font-size: clamp(6.5rem, 23.4vw, 19.5rem);
+    letter-spacing: -0.05em;
+    color: var(--text-main);
+  }
+
+  .why-text {
+    font-family: 'Inter', sans-serif !important;
+    font-weight: 900;
+    text-transform: lowercase;
+  }
+
+  .me-text {
+    font-family: 'Amsterdam Four', cursive !important;
+    font-weight: 100;
+    color: var(--accent-color);
+    text-transform: lowercase;
+    margin-top: -0.65em;
+    margin-left: 30%;
+    display: inline-block;
+    transform: rotate(-8.5deg);
+  }
+
+  /* Thumbtack Pin Styling */
+  .thumbtack {
+    width: 24px;
+    height: 24px;
+    background: #1a1a1a;
+    border-radius: 50%;
+    position: absolute;
+    top: 15px; /* Pinned at the top of the paper */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+    box-shadow: 
+      inset -3px -3px 6px rgba(0,0,0,0.6),
+      inset 2px 2px 6px rgba(255,255,255,0.2),
+      0 6px 12px rgba(0,0,0,0.4);
+  }
+  .thumbtack::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 8px;
+    height: 8px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 50%;
+    transform: translate(-70%, -70%);
+  }
+
+  /* Tear-off Note Styling */
+  .tear-off-note {
+    position: relative;
+    z-index: 10;
+    width: 540px; /* Reduced size */
+    max-width: 95vw;
+    margin: -80px auto 0; /* Pushed up slightly */
+    
+    /* Photorealistic Paper Texture - applied to body and strips instead */
+    background: transparent;
+    filter: 
+      drop-shadow(0 15px 35px rgba(0,0,0,0.12))
+      drop-shadow(0 40px 90px rgba(0,0,0,0.15));
+    
+    transform: rotate(-0.5deg) translateY(5vh);
+  }
+
+  .note-body {
+    padding: 80px 50px 100px 50px;
+    text-align: center;
+    border-bottom: 1px dashed rgba(0,0,0,0.1);
+    
+    /* Paper Texture moved here */
+    background: #fdfdfb;
+    background-image: 
+      radial-gradient(circle at 50% 50%, rgba(0,0,0,0.01) 0%, transparent 100%),
+      url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='paperNoise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23paperNoise)' opacity='0.05'/%3E%3C/svg%3E");
+    filter: url(#paper-edge);
+  }
+
+  .note-message {
+    font-family: var(--font-serif);
+    font-size: 1.8rem;
+    line-height: 1.3;
+    color: #111;
+    margin-bottom: 2.5rem;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+  }
+
+  /* Red Hand-Drawn Annotations */
+  .strike {
+    text-decoration: none;
+    position: relative;
+    display: inline-block;
+  }
+  .strike::after {
+    content: '';
+    position: absolute;
+    left: -5px;
+    right: -5px;
+    top: 55%;
+    height: 2px;
+    background: var(--accent-color);
+    transform: rotate(-1.5deg);
+    opacity: 0.8;
+    border-radius: 40% 60% 45% 55% / 60% 40% 60% 40%;
+  }
+
+  .underline, .underline-bold {
+    text-decoration: none;
+    position: relative;
+    display: inline-block;
+  }
+  .underline::after, .underline-bold::after {
+    content: '';
+    position: absolute;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    height: 2px;
+    background: var(--accent-color);
+    transform: rotate(0.5deg);
+    opacity: 0.8;
+  }
+  .underline-bold::after {
+    height: 3px;
+    bottom: -4px;
+    width: 105%;
+  }
+
+  .strips-container {
+    display: flex;
+    justify-content: center;
+    height: 200px;
+    overflow: visible;
+    background: transparent; /* Wall shows through gaps */
+  }
+
+  .tear-strip {
+    flex: 1;
+    background: #fdfdfb;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='paperNoise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23paperNoise)' opacity='0.05'/%3E%3C/svg%3E");
+    border: none;
+    border-left: 1px dashed rgba(0,0,0,0.08);
+    padding: 20px 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease, background 0.3s ease;
+    filter: url(#paper-edge);
+    transform-origin: top center;
+    will-change: transform;
+    position: relative;
+    z-index: 1;
+  }
+
+  .tear-strip:last-child {
+    border-right: 1px dashed rgba(0,0,0,0.08);
+  }
+
+  .tear-strip:hover {
+    transform: translateY(20px) rotate(3deg);
+    z-index: 20;
+    background: #ffffff;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+  }
+
+  .strip-gap {
+    flex: 1;
+    position: relative;
+    /* No paper background here */
+  }
+
+  .fallen-strip {
+    position: absolute;
+    top: 240px;
+    left: 0;
+    width: 100%; /* Take full width of the gap */
+    height: 200px;
+    background: #fdfdfb;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='paperNoise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23paperNoise)' opacity='0.05'/%3E%3C/svg%3E");
+    transform: rotate(15deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 0;
+    filter: url(#paper-edge) drop-shadow(0 10px 20px rgba(0,0,0,0.2));
+    z-index: 5;
+    pointer-events: none;
+  }
+
+  .fallen-strip .strip-text {
+    margin: 0 auto;
+    display: block;
+    width: fit-content;
+    text-align: center;
+  }
+
+  .strip-text {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    transform: rotate(180deg);
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: rgba(0,0,0,0.5);
+    pointer-events: none;
+    font-family: var(--font-sans);
+    line-height: normal;
+  }
+
+  @keyframes tearOff {
+    0% { transform: translateY(0) rotate(0) rotateX(0); opacity: 1; }
+    40% { transform: translateY(40px) rotate(8deg) rotateX(-20deg); opacity: 1; }
+    100% { transform: translateY(400px) rotate(45deg) rotateX(-60deg); opacity: 0; }
+  }
+
+  /* Tearing Animation */
+  .tear-strip.tearing {
+    animation: tearOff 0.8s forwards cubic-bezier(0.5, 0, 0.5, 1);
+    pointer-events: none;
+    z-index: 100;
+  }
+
+  @keyframes tearOff {
+    0% {
+      transform: translateY(0) rotate(0);
+      opacity: 1;
+    }
+    30% {
+      transform: translateY(20px) rotate(5deg);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(300px) rotate(25deg);
+      opacity: 0;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .note-message { font-size: 1.1rem; }
+    .strips-container { height: 140px; }
+    .tear-off-note { width: 100%; }
+    .massive-text { font-size: 5rem; }
+  }
+</style>

@@ -1,0 +1,96 @@
+---
+---
+<section class="hero">
+  <div class="hero-composition reveal">
+    
+    <!-- Name Block -->
+    <div class="name-block">
+      <h2 class="script-accent">Iva Lucic's</h2>
+    </div>
+
+    <!-- Portfolio Block -->
+    <div class="portfolio-block">
+      <span class="marketing-text">marketing</span>
+      <h1 class="massive-headline">portfolio</h1>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #ffffff;
+    position: relative;
+    padding: 100px 40px;
+  }
+
+  .hero-composition {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0; /* Tight layout like the image */
+    text-align: center;
+  }
+
+  .name-block {
+    margin-bottom: -5vh; /* Overlap effect from the image */
+    margin-left: -20vw; /* Offset to the left like the image */
+    z-index: 10;
+  }
+
+  .script-accent {
+    font-family: 'Amsterdam Four', var(--font-script);
+    font-size: clamp(3.7rem, 11.2vw, 13.1rem);
+    font-weight: 300;
+    -webkit-font-smoothing: antialiased;
+    color: var(--accent-color);
+    text-transform: none;
+    letter-spacing: 0;
+    line-height: 1;
+    transform: rotate(-6deg); /* Handwritten tilt */
+    display: inline-block;
+  }
+
+  .portfolio-block {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end; /* Align "marketing" to the right side of portfolio */
+  }
+
+  .marketing-text {
+    font-family: var(--font-sans);
+    font-weight: 900;
+    font-size: clamp(1.5rem, 4.5vw, 5rem);
+    color: var(--text-main);
+    text-transform: lowercase;
+    letter-spacing: -0.04em;
+    margin-bottom: -2vh; /* Pull down closer to portfolio */
+    margin-right: 5vw;
+  }
+
+  .massive-headline {
+    font-family: var(--font-sans);
+    font-weight: 900;
+    font-size: clamp(8rem, 25vw, 24rem);
+    letter-spacing: -0.06em;
+    line-height: 0.8;
+    color: var(--text-main);
+    text-transform: lowercase;
+    margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    .name-block {
+      margin-left: -10vw;
+      margin-bottom: -2vh;
+    }
+    .marketing-text {
+      margin-right: 0;
+      margin-bottom: -1vh;
+    }
+  }
+</style>

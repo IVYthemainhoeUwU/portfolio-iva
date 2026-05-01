@@ -1,0 +1,295 @@
+---
+---
+<div id="intro-canvas" class="intro-section">
+  <div class="editor-toolbar">
+    <div class="toolbar-top">
+      <div class="window-dot red"></div>
+      <div class="window-dot yellow"></div>
+      <div class="window-dot green"></div>
+    </div>
+    <div class="toolbar-bottom">
+      <div class="toolbar-item font-dropdown">Courier New <span class="arrow">▾</span></div>
+      <div class="toolbar-item weight-dropdown">Regular <span class="arrow">▾</span></div>
+      <div class="toolbar-item size-dropdown">20 <span class="arrow">▾</span></div>
+      <div class="toolbar-divider"></div>
+      <div class="toolbar-item style-btn">B</div>
+      <div class="toolbar-item style-btn"><i>I</i></div>
+      <div class="toolbar-item style-btn"><u>U</u></div>
+      <div class="toolbar-divider"></div>
+      <div class="toolbar-item icon-btn">
+        <svg viewBox="0 0 24 24" width="14" height="14"><path d="M3 6h18v2H3V6zm0 5h18v2H3v-2zm0 5h18v2H3v-2z" fill="currentColor"/></svg>
+      </div>
+      <div class="toolbar-item icon-btn">
+        <svg viewBox="0 0 24 24" width="14" height="14"><path d="M3 6h18v2H3V6zm4 5h10v2H7v-2zm-4 5h18v2H3v-2z" fill="currentColor" opacity="0.5"/></svg>
+      </div>
+      <div class="toolbar-item icon-btn">
+        <svg viewBox="0 0 24 24" width="14" height="14"><path d="M4 6h16v2H4V6zm0 5h16v2H4v-2zm0 5h16v2H4v-2z" fill="currentColor" opacity="0.3"/></svg>
+      </div>
+      <div class="toolbar-divider"></div>
+      <div class="toolbar-item icon-btn">
+        <svg viewBox="0 0 24 24" width="14" height="14"><path d="M4 6h2v2H4V6zm4 0h12v2H8V6zM4 11h2v2H4v-2zm4 0h12v2H8v-2zM4 16h2v2H4v-2zm4 0h12v2H8v-2z" fill="currentColor" opacity="0.6"/></svg>
+      </div>
+      <div class="toolbar-spacer"></div>
+      <div class="toolbar-item zoom-dropdown">100% <span class="arrow">▾</span></div>
+    </div>
+  </div>
+  <div class="canvas-content">
+    <div id="line-1" class="typing-line"></div>
+    <div id="line-2" class="typing-line"></div>
+    <div id="line-3" class="scroll-line">because what matters rarely fits into bullet points</div>
+  </div>
+  <div id="scroll-hint" class="scroll-hint">( scroll )</div>
+</div>
+
+<style>
+  .intro-section {
+    position: relative;
+    width: 100%;
+    height: 110vh;
+    background: var(--bg-color, #ffffff);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    z-index: 1000;
+  }
+
+  /* Toolbar Styling */
+  .editor-toolbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1010;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.8s ease;
+  }
+
+  .toolbar-top {
+    display: flex;
+    gap: 8px;
+    padding: 14px 20px;
+    background: #f8f8f8;
+    border-bottom: 1px solid #eeeeee;
+  }
+
+  .window-dot {
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+  }
+  .red { background: #ff5f57; }
+  .yellow { background: #ffbd2e; }
+  .green { background: #28c840; }
+
+  .toolbar-bottom {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    gap: 10px;
+    background: #ffffff;
+    border-bottom: 1px solid #eeeeee;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+  }
+
+  /* Hide scrollbar for toolbar */
+  .toolbar-bottom::-webkit-scrollbar { display: none; }
+
+  .toolbar-item {
+    background: #ffffff;
+    border: 1px solid #e8e8e8;
+    border-radius: 5px;
+    padding: 5px 12px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-size: 0.72rem;
+    color: #555;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: default;
+    white-space: nowrap;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+  }
+
+  .toolbar-divider {
+    width: 1px;
+    height: 18px;
+    background: #eeeeee;
+    margin: 0 5px;
+    flex-shrink: 0;
+  }
+
+  .toolbar-spacer {
+    flex-grow: 1;
+  }
+
+  .arrow {
+    font-size: 0.55rem;
+    opacity: 0.4;
+    margin-top: 1px;
+  }
+
+  .style-btn {
+    font-weight: 600;
+    padding: 5px 14px;
+    min-width: 38px;
+    justify-content: center;
+  }
+
+  .icon-btn {
+    padding: 5px 10px;
+  }
+
+  .section-faded .editor-toolbar {
+    opacity: 0;
+    transform: translateY(-40px);
+  }
+
+  .canvas-content {
+    width: 100%;
+    max-width: 900px;
+    padding: 0 10vw;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    /* Vertically centered, slightly left-aligned as requested */
+    margin-right: auto;
+    margin-left: 10vw;
+  }
+
+  .typing-line, .scroll-line {
+    font-family: 'IBM Plex Mono', 'Courier New', Courier, monospace;
+    font-size: clamp(1.2rem, 2vw, 1.8rem);
+    color: #1a1a1a;
+    line-height: 1.6;
+    min-height: 1.6em;
+    letter-spacing: -0.02em;
+  }
+
+  .scroll-line {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 1.5s cubic-bezier(0.16, 1, 0.3, 1), transform 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+    margin-top: 2rem;
+  }
+
+  .scroll-line.visible {
+    opacity: 0.45;
+    transform: translateY(0);
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 8vh;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: var(--font-sans, sans-serif);
+    font-size: 0.7rem;
+    color: #999;
+    letter-spacing: 0.35em;
+    text-transform: lowercase;
+    opacity: 0;
+    transition: opacity 1s ease;
+  }
+
+  /* Pulse animation for the hint */
+  .hint-pulse {
+    animation: hintFade 4s infinite ease-in-out;
+  }
+
+  @keyframes hintFade {
+    0%, 100% { opacity: 0.2; }
+    50% { opacity: 0.5; }
+  }
+
+  /* Reveal transition for the entire section content on scroll */
+  .canvas-content {
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.8s ease;
+  }
+
+  .section-faded .canvas-content {
+    opacity: 0;
+    transform: translateY(-60px);
+  }
+</style>
+
+<script>
+  const line1Text = "My CV won’t show you how I think.";
+  const line2Text = "So I built this instead.";
+  
+  const l1 = document.getElementById('line-1');
+  const l2 = document.getElementById('line-2');
+  const l3 = document.getElementById('line-3');
+  const section = document.getElementById('intro-canvas');
+  const hint = document.getElementById('scroll-hint');
+
+  function type(el, text, delay = 0, speed = 40) {
+    return new Promise(resolve => {
+      setTimeout(() => {
+        let i = 0;
+        function step() {
+          if (i < text.length) {
+            el.textContent += text[i];
+            i++;
+            setTimeout(step, speed);
+          } else {
+            resolve();
+          }
+        }
+        step();
+      }, delay);
+    });
+  }
+
+  async function init() {
+    if (!l1 || !l2 || !hint) return;
+
+    await type(l1, line1Text, 800);
+    await type(l2, line2Text, 600);
+    
+    hint.style.opacity = '1';
+    hint.classList.add('hint-pulse');
+  }
+
+  // Use Intersection Observer to trigger typing only when visible
+  const observer = new IntersectionObserver((entries) => {
+    if (entries[0].isIntersecting) {
+      init();
+      observer.disconnect();
+    }
+  }, { threshold: 0.5 });
+
+  if (section) observer.observe(section);
+
+  window.addEventListener('scroll', () => {
+    if (!section || !l3 || !hint) return;
+    
+    const scroll = window.scrollY;
+    const vh = window.innerHeight;
+
+    // Line 3 Reveal
+    if (scroll > vh * 0.15) {
+      l3.classList.add('visible');
+    } else {
+      l3.classList.remove('visible');
+    }
+
+    // Scroll Hint Fade Out
+    if (scroll > 40) {
+      hint.style.opacity = '0';
+      hint.style.pointerEvents = 'none';
+    } else if (scroll < 10 && l2.textContent.length === line2Text.length) {
+      hint.style.opacity = '1';
+    }
+
+    // Whole Section Fade Out / Move Up
+    if (scroll > vh * 0.4) {
+      section.classList.add('section-faded');
+    } else {
+      section.classList.remove('section-faded');
+    }
+  });
+</script>

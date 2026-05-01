@@ -1,0 +1,120 @@
+---
+---
+<footer class="footer">
+  <div class="section-container">
+    <div class="footer-layout">
+      <div class="footer-main reveal">
+        <h2 class="editorial-heading">
+          <span class="thinking-text">volume closed.</span>
+          <span class="work-text">thinking continues.</span>
+        </h2>
+      </div>
+      
+      <div class="footer-details reveal" style="transition-delay: 0.2s;">
+
+        <div class="col">
+          <h4>Connect</h4>
+          <p><a href="https://www.linkedin.com/in/iva-lucic-ba53101aa/" target="_blank" rel="noopener noreferrer">LinkedIn</a></p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="footer-bottom reveal" style="transition-delay: 0.4s;">
+      <p>Curated with excellence. All rights reserved &copy; 2026</p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    margin-top: 25px;
+    background: #ffffff;
+    padding-bottom: 25px;
+  }
+
+  .footer .section-container {
+    padding: 75px 60px;
+  }
+
+  .footer-layout {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 100px;
+  }
+
+  .editorial-heading {
+    font-family: 'Inter', sans-serif !important;
+    font-weight: 900;
+    font-size: clamp(2.5rem, 4.5vw, 5.2rem);
+    line-height: 0.9;
+    color: var(--text-main);
+    text-transform: lowercase;
+    letter-spacing: -0.06em;
+    margin: 0;
+  }
+
+  .thinking-text {
+    display: block;
+  }
+
+  .work-text {
+    display: block;
+    font-family: 'Amsterdam Four', cursive !important;
+    color: var(--accent-color);
+    font-weight: 100;
+    text-transform: none;
+    letter-spacing: 0;
+    margin-top: -0.45em;
+    margin-left: 1.5rem;
+    transform: rotate(-8.5deg);
+    -webkit-font-smoothing: antialiased;
+    opacity: 0.85;
+    line-height: 1;
+  }
+
+  .footer-details {
+    display: flex;
+    gap: 80px;
+  }
+
+  .col h4 {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    margin-bottom: 25px;
+    color: rgba(0, 0, 0, 0.4);
+  }
+
+  .col p, .col a {
+    color: var(--text-main);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+    display: block;
+    transition: var(--transition-slow);
+  }
+
+  .col a:hover {
+    color: var(--accent-color);
+  }
+
+  .footer-bottom {
+    margin-top: 50px;
+    text-align: center;
+    font-size: 0.6rem;
+    color: rgba(0, 0, 0, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+  }
+
+  @media (max-width: 968px) {
+    .footer-layout {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 60px;
+    }
+  }
+</style>

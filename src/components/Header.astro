@@ -1,0 +1,77 @@
+---
+---
+<header class="header">
+  <div class="header-container">
+    <a href="/" class="logo">AM <span class="signature">Studio</span></a>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Work</a></li>
+        <li><a href="#approach">Approach</a></li>
+        <li><a href="#contact" class="btn">Inquiry</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .header {
+    width: 100%;
+    background: transparent;
+    padding: 30px 0;
+    border-bottom: 1px solid rgba(26, 26, 26, 0.08);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 100;
+  }
+
+  .header-container {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logo {
+    font-family: var(--font-serif);
+    font-size: 1.8rem;
+    font-weight: 900;
+    text-decoration: none;
+    color: var(--text-main);
+    letter-spacing: -0.05em;
+  }
+
+  .logo span {
+    margin-left: -5px;
+  }
+
+  .nav-links {
+    display: flex;
+    list-style: none;
+    gap: 40px;
+    align-items: center;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    color: var(--text-main);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    transition: var(--transition-fluid);
+  }
+
+  .nav-links a:not(.btn):hover {
+    color: var(--accent-color);
+  }
+
+  @media (max-width: 768px) {
+    .nav-links {
+      display: none;
+    }
+  }
+</style>
